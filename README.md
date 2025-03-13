@@ -9,7 +9,8 @@
 Зависимости:
 
     swiper.js
-    dynamicAdapt.js (небольшая библиотека для перемещения элементов разметки при определенных брейкпоинтах на адаптиве)
+    dynamicAdapt.js (небольшая библиотека для перемещения элементов разметки 
+                     при определенных брейкпоинтах на адаптиве)
 
 Dev зависимости:
 
@@ -34,4 +35,4 @@ Dev зависимости:
 
 Результат:
 
-[https://one-ess.github.io/go-surf/build/index.html](https://one-ess.github.io/go-surf/build/index.html)
+[https://go-surf-eight.vercel.app/](https://go-surf-eight.vercel.app/)
