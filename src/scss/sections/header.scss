@@ -1,0 +1,434 @@
+@use "../settings/vars" as *;
+@use "../settings/keyframes";
+
+.header {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  &__title {
+    position: absolute;
+    visibility: hidden;
+    transform: scale(0);
+  }
+
+  &__route-map {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    max-width: 100%;
+    user-select: none;
+    pointer-events: none;
+    @media (max-width: 700px) {
+      top: -100px;
+      right: -30px;
+    }
+  }
+
+  &__aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+    @media (max-width: 700px) {
+      border: none;
+      gap: 32px;
+      height: fit-content;
+    }
+  }
+
+  &__shores-container {
+    position: absolute;
+    inset: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__shore {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(62.09% 62.09% at 42.87% 49.23%, rgba(0, 0, 0, 0.4) 0%, #0f0f0f 100%);
+    }
+  }
+
+  &__shore-dots-container {
+    position: absolute;
+    bottom: 20px;
+    right: 80px;
+    z-index: 40;
+    width: 920px;
+    @media (max-width: 1200px) {
+      right: 30px;
+      width: 560px;
+    }
+    @media (max-width: 700px) {
+      right: 0;
+      padding: 0 10px;
+      bottom: 15px;
+      width: 100%;
+    }
+  }
+
+  &__shore-dots {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__shore-dot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    background: none;
+    transition: transform 0.4s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 1200px) {
+      width: 125px;
+    }
+    @media (max-width: 700px) {
+      justify-content: center;
+      margin: 0 5px;
+    }
+  }
+}
+
+.route-map {
+  &__route {
+    display: none;
+    > path {
+      stroke-dasharray: 700;
+      stroke-dashoffset: 700;
+    }
+  }
+}
+
+.route {
+  &_active {
+    display: block;
+    > path {
+      animation-name: pathanimation;
+      animation-duration: 6.5s;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+.aside {
+  &__logo {
+    max-width: 168px;
+    &::before {
+      content: "Go Surf";
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 200px;
+      line-height: 156px;
+      color: $mainColor;
+      opacity: 0.07;
+      user-select: none;
+      pointer-events: none;
+    }
+    @media (max-width: 1200px) {
+      max-width: 120px;
+      &::before {
+        font-size: 120px;
+        line-height: 120px;
+      }
+    }
+    @media (max-width: 700px) {
+      max-width: 80px;
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &__logo-img {
+    width: 100%;
+  }
+
+  &__menu-wrapper {
+    @media (max-width: 700px) {
+      position: absolute;
+      left: -1000%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
+      transition: left 0.33s ease-in-out;
+    }
+  }
+
+  &__menu-wrapper_active {
+    @media (max-width: 700px) {
+      left: 0;
+    }
+  }
+
+  &__menu-burger {
+    display: none;
+    @media (max-width: 700px) {
+      position: relative;
+      z-index: 5;
+      display: block;
+      width: 30px;
+      height: 18px;
+      background-color: transparent;
+      cursor: pointer;
+      span {
+        position: absolute;
+        top: calc(50% - 1px);
+        left: 0px;
+        transition: all 0.3s ease 0s;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        &:first-child {
+          top: 0px;
+        }
+        &:last-child {
+          top: auto;
+          bottom: 0px;
+        }
+      }
+    }
+  }
+
+  &__menu-burger_active {
+    span {
+      transform: scale(0);
+      &:first-child {
+        transform: rotate(-45deg);
+        top: calc(50% - 1px);
+      }
+      &:last-child {
+        transform: rotate(45deg);
+        bottom: calc(50% - 1px);
+      }
+    }
+  }
+
+  &__search-button {
+    background-color: transparent;
+    transition: transform 0.4s;
+    &:hover {
+      transform: scale(1.3);
+      svg {
+        path {
+          transition: fill 0.7s;
+          fill: $aqua;
+        }
+      }
+    }
+  }
+
+  &__date {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19px;
+    text-align: center;
+    span {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 64px;
+    }
+  }
+
+  &__location {
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 1.05px;
+    text-transform: capitalize;
+    background-image: url("./img/location-marker.svg");
+    background-repeat: no-repeat;
+    @media (max-width: 700px) {
+      order: 2;
+    }
+  }
+}
+
+.menu {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 33px;
+    @media (max-width: 700px) {
+      height: 100%;
+      gap: 40px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 3px;
+    color: $mainColor;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+    &:hover {
+      color: $aqua;
+      svg {
+        path {
+          transition: fill 0.3s ease;
+          fill: $aqua;
+        }
+      }
+    }
+  }
+}
+
+.shore {
+  &__description {
+    position: absolute;
+    bottom: 105px;
+    right: 80px;
+    text-align: right;
+    @media (max-width: 1200px) {
+      right: 30px;
+      bottom: 90px;
+    }
+    @media (max-width: 700px) {
+      right: 15px;
+      bottom: 70px;
+    }
+  }
+
+  &__heading {
+    margin-left: auto;
+    margin-right: 0;
+    gap: 15px;
+    &:first-child {
+      margin-bottom: 40px;
+    }
+    @media (max-width: 700px) {
+      gap: 12px;
+      &:first-child {
+        margin-bottom: 25px;
+      }
+    }
+  }
+
+  &__subtitle {
+    align-self: flex-end;
+    &::before {
+      left: -104px;
+    }
+    &::after {
+      display: none;
+    }
+    @media (max-width: 500px) {
+      font-size: 18px;
+    }
+  }
+
+  &__title {
+    font-size: 80px;
+    font-weight: 800;
+    @media (max-width: 700px) {
+      font-size: 60px;
+    }
+    @media (max-width: 500px) {
+      font-size: 40px;
+    }
+  }
+
+  &__condition {
+    margin-bottom: 20px;
+    font-weight: 800;
+    @media (max-width: 700px) {
+      font-size: 30px;
+      margin-left: auto;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    transition: transform 0.4s;
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+}
+
+.shore-dot {
+  &__progress {
+    width: 100%;
+    height: 5px;
+    background-color: $mainColor;
+    margin-bottom: 8px;
+  }
+
+  &__number {
+    font-size: 24px;
+    @media (max-width: 1200px) {
+      font-size: 20px;
+    }
+    @media (max-width: 700px) {
+      display: none;
+    }
+  }
+
+  &__title {
+    z-index: 5;
+    font-weight: 300;
+    font-size: 16px;
+    text-transform: capitalize;
+    @media (max-width: 700px) {
+      font-size: 14px;
+    }
+    @media (max-width: 500px) {
+      font-size: 11px;
+    }
+  }
+}
+
+.swiper-pagination-bullet-active {
+  .shore-dot__progress {
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-color: $aqua;
+      animation-name: progress;
+      animation-duration: 7s;
+    }
+  }
+}

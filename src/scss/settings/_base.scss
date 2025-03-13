@@ -1,0 +1,27 @@
+@use "../settings/vars" as *;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-width: $minWidth + px;
+  font-family: $fontFamily, sans-serif;
+  font-size: $fontSize;
+  font-weight: 800;
+  line-height: $lineHeight;
+  text-transform: uppercase;
+  color: $mainColor;
+  background-color: $backgroundColor;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  max-width: $maxWidthContainer + px;
+  margin: 0 auto;
+}

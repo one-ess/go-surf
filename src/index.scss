@@ -1,0 +1,14 @@
+@use "./scss/settings/fonts";
+@use "./scss/settings/null";
+@use "./scss/settings/base";
+
+@use "swiper/css/bundle";
+
+@use "./scss/global/global";
+
+@use "./scss/sections/header.scss";
+@use "./scss/sections/surf.scss";
+@use "./scss/sections/travel.scss";
+@use "./scss/sections/sleep.scss";
+@use "./scss/sections/shop.scss";
+@use "./scss/sections/footer.scss";

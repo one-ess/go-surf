@@ -1,0 +1,112 @@
+.travel {
+  &__container {
+    padding: 270px 0;
+    background-image: url("./img/cocktail.png");
+    background-repeat: no-repeat;
+    background-position: right -100px bottom;
+    @media (max-width: 1300px) {
+      padding: 120px 0;
+      background-image: none;
+    }
+    @media (max-width: 900px) {
+      padding-top: 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: 110px;
+    &::before {
+      content: "Travel";
+    }
+    @media (max-width: 700px) {
+      margin-bottom: 50px;
+    }
+  }
+
+  &__flight {
+    position: relative;
+    background-position: right center, top left;
+    background-repeat: no-repeat;
+    @media (max-width: 1300px) {
+      background-size: 500px, auto;
+      background-position: right top 490px, top left;
+    }
+    @media (max-width: 900px) {
+      background-size: 350px, 1000px;
+      background-position: right top 540px, top left;
+    }
+    @media (max-width: 700px) {
+      background-size: 270px, 800px;
+      background-position: center top 560px, top left;
+    }
+  }
+}
+
+.flight {
+  &__location {
+    margin-bottom: 550px;
+    @media (max-width: 700px) {
+      margin-bottom: 500px;
+    }
+  }
+
+  &__location-subtitle {
+    align-self: flex-end;
+    &::before {
+      left: -104px;
+    }
+    &::after {
+      display: none;
+    }
+    @media (max-width: 700px) {
+      align-self: center;
+      font-size: 14px;
+    }
+  }
+
+  &__airline {
+    margin-left: 130px;
+    margin-bottom: 120px;
+    @media (max-width: 1300px) {
+      margin-left: 40px;
+    }
+    @media (max-width: 700px) {
+      margin-left: auto;
+    }
+  }
+
+  &__airline-subtitle {
+    align-self: flex-start;
+    &::before {
+      display: none;
+    }
+    &::after {
+      right: -104px;
+    }
+    @media (max-width: 700px) {
+      align-self: center;
+      font-size: 13px;
+    }
+  }
+
+  &__airline-title {
+    padding-right: 65px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 47px;
+    @media (max-width: 1300px) {
+      padding-right: 50px;
+      background-size: 35px;
+    }
+    @media (max-width: 900px) {
+      padding-right: 35px;
+      background-size: 21px;
+    }
+  }
+
+  &__book-button {
+    display: block;
+    margin: 0 auto;
+    background-color: transparent;
+  }
+}

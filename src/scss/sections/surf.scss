@@ -1,0 +1,349 @@
+@use "../settings/vars" as *;
+@use "../settings/keyframes";
+
+.surf {
+  position: relative;
+
+  &__container {
+    padding-top: 150px;
+    background-image: url("./img/POI.svg");
+    background-repeat: no-repeat;
+    background-position: right -150px top 150px;
+    @media (max-width: 1300px) {
+      background: none;
+    }
+    @media (max-width: 1200px) {
+      padding: 80px 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: 80px;
+    &::before {
+      content: "Surf";
+    }
+    @media (max-width: 700px) {
+      margin-bottom: 50px;
+    }
+  }
+
+  &__map {
+    position: relative;
+    width: 1200px;
+    height: 634px;
+    margin: 0 auto 90px;
+    background-image: url("./img/world-map.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    @media (max-width: 1200px) {
+      width: auto;
+      height: auto;
+      margin-top: 80px;
+      margin-bottom: 80px;
+      background: none;
+    }
+    @media (max-width: 700px) {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  }
+
+  &__tour-posters {
+    padding: 30px 0;
+  }
+
+  &__tour-poster {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 700px;
+    padding: 72px 40px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.05) !important;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(#1b1a1a, 0.85);
+      transition: background-color 0.3s ease;
+    }
+
+    &:hover {
+      &::before {
+        background-color: transparent;
+      }
+    }
+
+    &:nth-child(2n) {
+      margin-top: -30px;
+    }
+
+    &.swiper-slide-active {
+      z-index: 2;
+      &::before {
+        background-color: rgba(#1b1a1a, 0.35);
+      }
+    }
+    &.swiper-slide-active .global-button {
+      visibility: visible;
+    }
+    @media (max-width: 1200px) {
+      padding: 25px 25px 0;
+      height: 310px;
+      transform: none !important;
+    }
+  }
+}
+
+.location {
+  &__subtitle {
+    align-self: flex-end;
+    &::before {
+      left: -104px;
+    }
+    &::after {
+      display: none;
+    }
+    @media (max-width: 700px) {
+      align-self: center;
+      font-size: 13px;
+    }
+  }
+}
+
+.map {
+  &__dots {
+    position: absolute;
+    top: 212px;
+    left: -13px;
+    padding: 0 15px;
+    overflow: visible;
+    @media (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  &__dot {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      filter: drop-shadow(0px 0px 10px rgba(74, 246, 205));
+    }
+  }
+
+  &__dot_active {
+    fill: rgb(255, 255, 255);
+    filter: drop-shadow(0px 0px 10px rgb(255, 255, 255));
+    &:hover {
+      filter: drop-shadow(0px 0px 10px rgb(255, 255, 255));
+    }
+  }
+
+  &__tour-cards {
+    position: relative;
+  }
+
+  &__tour-card {
+    position: absolute;
+    width: 270px;
+    padding: 30px;
+    border-radius: 6px;
+    background: rgba(#0c0c0c, 1);
+    border: 1px solid transparent;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+    &.swiper-slide-active {
+      border-color: $aqua;
+      &:hover {
+        background: none;
+      }
+    }
+    @media (max-width: 1200px) {
+      position: static;
+      visibility: visible;
+      opacity: 1;
+      padding: 15px;
+    }
+  }
+}
+
+.tour-card {
+  &_hawaii {
+    top: 110px;
+    left: 0;
+  }
+
+  &_cuba {
+    top: 100px;
+    left: 223px;
+  }
+
+  &_brazil {
+    top: 278px;
+    left: 296px;
+  }
+
+  &_france {
+    top: -5px;
+    left: 410px;
+  }
+
+  &_rsa {
+    top: 328px;
+    left: 513px;
+  }
+
+  &_india {
+    top: 172px;
+    left: 671px;
+  }
+
+  &_japan {
+    top: 82px;
+    left: 886px;
+  }
+
+  &_australia {
+    top: 275px;
+    right: 100px;
+  }
+
+  &_active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 13px;
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    position: relative;
+    flex: 1 1 80%;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 50%;
+      height: 1px;
+      background-color: $aqua;
+    }
+    @media (max-width: 1200px) {
+      font-size: 14px;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      transform: translateX(5px);
+    }
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: capitalize;
+    @media (max-width: 1200px) {
+      font-size: 13px;
+    }
+  }
+
+  &__conditions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__condition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    @media (max-width: 1200px) {
+      gap: 6px;
+    }
+  }
+
+  &__condition-value {
+    font-size: 16px;
+    @media (max-width: 1200px) {
+      font-size: 14px;
+    }
+  }
+
+  &__condition-status {
+    font-size: 10px;
+    font-weight: 300;
+  }
+}
+
+.tour-poster {
+  &__title {
+    z-index: 99;
+    font-size: 40px;
+    flex-grow: 1;
+    @media (max-width: 1200px) {
+      font-size: 22px;
+    }
+    @media (max-width: 700px) {
+      font-size: 16px;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    transform-origin: center;
+    white-space: nowrap;
+    @media (max-width: 1200px) {
+      font-size: 13px;
+      letter-spacing: 4px;
+    }
+  }
+
+  &__link {
+    z-index: 99;
+    visibility: hidden;
+    align-self: center;
+    @media (max-width: 1200px) {
+      font-size: 18px;
+      span {
+        padding: 10px 34px 10px 15px;
+        background-size: 15px;
+      }
+    }
+    @media (max-width: 700px) {
+      font-size: 14px;
+      span {
+        padding: 8px 20px 6px 10px;
+        background-size: 13px;
+        background-position: center right 3px;
+        &::before {
+          width: 15px;
+        }
+      }
+    }
+  }
+}
