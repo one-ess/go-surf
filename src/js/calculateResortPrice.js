@@ -8,12 +8,12 @@ const calculateResortPrice = () => {
 
       const thisCounter = counter.querySelector(".resort__counter-number"); //получаем текущий счетчик
 
-      if (e.target.closest(".resort__counter-increase-button")) {
+      if (e.target.closest(".resort__count-button_increase")) {
         if (+thisCounter.textContent < 9) {
           thisCounter.textContent = +thisCounter.textContent + 1;
         }
       }
-      if (e.target.closest(".resort__counter-decrease-button")) {
+      if (e.target.closest(".resort__count-button_decrease")) {
         if (+thisCounter.textContent > 1) {
           thisCounter.textContent = +thisCounter.textContent - 1;
         }

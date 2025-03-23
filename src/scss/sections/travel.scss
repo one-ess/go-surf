@@ -1,12 +1,22 @@
 .travel {
   &__container {
+    position: relative;
     padding: 270px 0;
-    background-image: url("./img/cocktail.png");
-    background-repeat: no-repeat;
-    background-position: right -100px bottom;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: -100px;
+      width: 280px;
+      height: 460px;
+      background-image: url("./img/cocktail.png");
+      background-repeat: no-repeat;
+    }
     @media (max-width: 1300px) {
       padding: 120px 0;
-      background-image: none;
+      &::before {
+        display: none;
+      }
     }
     @media (max-width: 900px) {
       padding-top: 0;
